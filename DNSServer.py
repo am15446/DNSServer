@@ -75,19 +75,19 @@ dns_records = {
             86400, #minimum
         ),
     },
-    'safebank.com.' : {
+    'safebank.com.': {
         dns.rdatatype.A: '192.168.1.102',
     },
-    'google.com.' : {
+    'google.com.': {
         dns.rdatatype.A: '192.168.1.103',
     },
-    'legitsite.com.' : {
+    'legitsite.com.': {
         dns.rdatatype.A: '192.168.1.104',
     },
-    'yahoo.com.' : {
+    'yahoo.com.': {
         dns.rdatatype.A: '192.168.1.105',
     },
-    'nyu.edu.' : {
+    'nyu.edu.': {
         dns.rdatatype.A: '192.168.1.106',
         dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
         dns.rdatatype.NS: 'ns1.nyu.edu.',
@@ -112,7 +112,7 @@ def run_dns_server():
 
             # Get the question from the request
             question = request.question[0] #??
-            qname = question.name.to_text().lower()
+            qname = question.name.to_text()
             qtype = question.rdtype
 
             # Check if there is a record in the `dns_records` dictionary that matches the question
