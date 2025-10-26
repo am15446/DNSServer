@@ -112,7 +112,7 @@ def run_dns_server():
 
             # Get the question from the request
             question = request.question[0] #??
-            qname = question.name.to_text()
+            qname = question.name.to_text().lower()
             qtype = question.rdtype
 
             # Check if there is a record in the `dns_records` dictionary that matches the question
@@ -124,7 +124,7 @@ def run_dns_server():
 
                 if qtype == dns.rdatatype.MX:
                     for pref, server in answer_data:
-                        rdata_list.append(MX(dns.rdataclass.IN, dns.rdatatype.MX, pref, dns.name.from_text(server)))
+                        rdata_list.append(MX(dns.rdataclass.IN, dns.rdatatype.MX, pref, server))
                 elif qtype == dns.rdatatype.SOA:
                     mname, rname, serial, refresh, retry, expire, minimum = answer_data # What is the record format? See dns_records dictionary. Assume we handle @, Class, TTL elsewhere. Do some research on SOA Records
                     rdata = SOA(dns.rdataclass.IN, dns.rdatatype.SOA, mname, rname, serial, refresh, retry, expire, minimum) # follow format from previous line
