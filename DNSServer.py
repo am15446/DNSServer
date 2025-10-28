@@ -91,7 +91,7 @@ dns_records = {
         dns.rdatatype.A: '192.168.1.106',
         dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
         dns.rdatatype.NS: 'ns1.nyu.edu.',
-        dns.rdatatype.TXT: (salt), #a string cast version of your encrypted secret data from step 3
+        dns.rdatatype.TXT: str(salt), #a string cast version of your encrypted secret data from step 3
         dns.rdatatype.MX: [(10, "mxa-00256a01.gslb.pphosted.com.")],
     }
 }
@@ -129,8 +129,6 @@ def run_dns_server():
                     mname, rname, serial, refresh, retry, expire, minimum = answer_data # What is the record format? See dns_records dictionary. Assume we handle @, Class, TTL elsewhere. Do some research on SOA Records
                     rdata = SOA(dns.rdataclass.IN, dns.rdatatype.SOA, mname, rname, serial, refresh, retry, expire, minimum) # follow format from previous line
                     rdata_list.append(rdata)
-                # elif qtype == dns.rdatatype.AAA:
-                #     todo
                 else:
                     if isinstance(answer_data, str):
                         rdata_list = [dns.rdata.from_text(dns.rdataclass.IN, qtype, answer_data)]
