@@ -91,7 +91,7 @@ dns_records = {
         dns.rdatatype.A: '192.168.1.106',
         dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
         dns.rdatatype.NS: 'ns1.nyu.edu.',
-        dns.rdatatype.TXT: (f'{salt}',), #a string cast version of your encrypted secret data from step 3
+        dns.rdatatype.TXT: (f'{salt!r}',), #a string cast version of your encrypted secret data from step 3
         dns.rdatatype.MX: [(10, "mxa-00256a01.gslb.pphosted.com.")],
     }
 }
